@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input";
 const formSchema = z.object({
 	email: z.string().optional(),
 	name: z.string().min(1, "Nombre es requerido"),
-	addressLin1: z.string().min(1, "Dirección es requerida"),
+	addressLine1: z.string().min(1, "Dirección es requerida"),
 	city: z.string().min(1, "Ciudad es requerida"),
 	country: z.string().min(1, "País es requerida"),
 });
@@ -86,7 +86,7 @@ export default function UserProfileForm({ onSave, isLoading, getUser}: Props) {
 				<div className="flex flex-col md:flex-row gap-4">
 					<FormField
 						control={form.control}
-						name="addressLin1"
+						name="addressLine1"
 						render={({ field }) => (
 							<FormItem className="flex-1">
 								<FormLabel>Dirección</FormLabel>
