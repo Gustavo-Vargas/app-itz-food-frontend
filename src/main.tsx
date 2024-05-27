@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Auth0ProviderWithNavigate from "./auth/Auth0ProviderWithNavigate";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "./components/ui/sonner";
-import AppRoutes from "./AppRoute";
+import AppRoutes from "./AppRoutes";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
