@@ -1,4 +1,5 @@
-import { Restaurant } from "@/types";
+import { SearchState } from "@/pages/SearchPage";
+import { Restaurant, RestaurantSearchResponse } from "@/types";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
@@ -119,3 +120,41 @@ export const useUpdateRestaurant = () => {
 
 	return { updateRestaurant, isLoading };
 }; // Fin de useUPDateRestaurant
+
+export const useSearchRestaurants = (
+	searchState: SearchState,
+	city?: string
+) => {
+	const createSearchRequest = async (): Promise<RestaurantSearchResponse> => {
+		const params = new URLSearchParams();
+		params.set("searchQuery", searchState.searchQuery);
+
+		const url =
+			API_BASE_URL +
+			"/api/restaurante/search/" +
+			city +
+			"?" +
+			params.toString();
+
+		console.log(url);
+
+		const response = await fetch(url);
+
+		if (!response.ok) {
+			throw new Error("Error al actualizar el Restaurante");
+		}
+
+		return response.json();
+	}; // Fin de createSearchRequest
+
+	const { 
+		data: results, 
+		isLoading 
+	} = useQuery(
+		["searchRestaurants", searchState],
+		createSearchRequest,
+		{ enabled: !!city }
+	);
+
+	return { results, isLoading };
+}; // Fin de useSearchRestaurants

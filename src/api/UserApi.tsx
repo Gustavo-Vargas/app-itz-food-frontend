@@ -112,7 +112,7 @@ export const useUser = () => {
 		});
 
 		if (!res.ok) {
-			throw new Error("Error al actualizar el perfil del usuario");
+			throw new Error("Error al obtener el perfil del usuario");
 		}
 
 		return res.json();
