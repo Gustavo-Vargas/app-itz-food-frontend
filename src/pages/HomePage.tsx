@@ -19,6 +19,7 @@ export default function HomePage() {
 				</h1>
 				<span className="text-x1">¡Tu comida está a solo un click!</span>
 				<SearchBar
+					searchQuery={""}
 					placeHolder="Buscar por ciudad o país"
 					onSubmit={handleSearchSubmit}
 				/>
