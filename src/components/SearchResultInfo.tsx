@@ -21,7 +21,7 @@ export default function SearchResultInfo({ total, city }: Props) {
 					Cambiar ubicación
 				</Link>
 			</span>
-            Agregar componente para ordenar los resultados
+            
 		</div>
 	);
 }

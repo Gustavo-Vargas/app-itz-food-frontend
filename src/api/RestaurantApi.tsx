@@ -128,6 +128,9 @@ export const useSearchRestaurants = (
 	const createSearchRequest = async (): Promise<RestaurantSearchResponse> => {
 		const params = new URLSearchParams();
 		params.set("searchQuery", searchState.searchQuery);
+		params.set("page", searchState.page.toString());
+		params.set("selectedCuisines", searchState.selectedCuisines.join(","));
+		params.set("sortOptions", searchState.sortOptions);
 
 		const url =
 			API_BASE_URL +
@@ -147,10 +150,7 @@ export const useSearchRestaurants = (
 		return response.json();
 	}; // Fin de createSearchRequest
 
-	const { 
-		data: results, 
-		isLoading 
-	} = useQuery(
+	const { data: results, isLoading } = useQuery(
 		["searchRestaurants", searchState],
 		createSearchRequest,
 		{ enabled: !!city }
