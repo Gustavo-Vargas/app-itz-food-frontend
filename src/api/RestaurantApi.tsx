@@ -158,3 +158,28 @@ export const useSearchRestaurants = (
 
 	return { results, isLoading };
 }; // Fin de useSearchRestaurants
+
+export const useGetSearchRestaurantById = (restaurantId?: string) => {
+
+	const getResaurantByIdRequest = async (): Promise<Restaurant> => {
+		const url = API_BASE_URL + "/api/restaurante/" + restaurantId;
+		console.log("URL",url);
+		
+		const response = await fetch(url);
+
+		if (!response.ok) {
+			throw new Error("Error al obtener los datos del Restaurante");
+		}
+
+		return response.json();
+	}; // FIn de getRestauranteByIdRequest
+
+	const { data: restaurant, isLoading } = useQuery(
+		"fetchRestaurant",
+		getResaurantByIdRequest,
+		{
+			enabled: !!restaurantId,
+		}
+	);
+	return { restaurant, isLoading };
+}; // Fin de useGetRestaurantById
