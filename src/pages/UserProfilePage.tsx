@@ -18,6 +18,8 @@ export default function UserProfilePage() {
 			getUser={getUser}
 			onSave={updateUser}
 			isLoading={isUpdateLoading}
+			title={"Formulario de perfil del usuario"}
+			buttonText={"Actializar"}
 		/>
 	);
 }
